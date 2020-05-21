@@ -1,0 +1,15 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
+driver = webdriver.Chrome()
+driver.get('https://web.whatsapp.com/')
+names =['name1','name2']
+input("Click anything after QR scan : ")
+for name in names:
+    user = driver.find_element_by_xpath('//*[@id="side"]/div[1]/div/label/div/div[2]')
+    user.send_keys(name)
+    user.send_keys(Keys.RETURN)
+    msg_box = driver.find_element_by_xpath('//*[@id="main"]/footer/div[1]/div[2]/div')
+    msg_box.send_keys(name, '"message"' )
+    button = driver.find_element_by_xpath('//*[@id="main"]/footer/div[1]/div[3]/button/span')
+    button.click()
